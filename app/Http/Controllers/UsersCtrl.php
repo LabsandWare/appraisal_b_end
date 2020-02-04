@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Users;
+
+class UsersCtrl extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    //
+    public function authenticate(Request $request)
+    {
+      $this->validate($request, [
+        'email' => 'required',
+        'password' => 'required'
+      ]);
+
+      $user = Users::where('email', $request->input('email'))->first();
+
+      if (Hash::check($request->input('password'), $user->password)) {
+        # code...
+        $apikey = base64_encode(str_random(40));
+        Users::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);
+        return response()->json([
+          'status' => 'Success',
+          'apikey' => $api
+        ]);
+      } else {
+        return response()->json([
+          'status' => 'fail'
+        ], 401);
+      }
+
+    }
+}
