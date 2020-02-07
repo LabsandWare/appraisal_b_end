@@ -14,11 +14,7 @@ class UsersCtrl extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
-
+    
     //
     public function authenticate(Request $request)
     {
@@ -44,4 +40,25 @@ class UsersCtrl extends Controller
       }
 
     }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @return \App\User
+     */
+    protected function create(Request $request)
+    {      
+      $this->validate($request, [
+        'username' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+      ]);
+
+        return User::create([
+          'name' => $data['name'],
+          'email' => $data['email'],
+          'password' => Hash::make($data['password'])
+        ]);
+    }
+
 }
