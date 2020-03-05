@@ -38,6 +38,9 @@ Route::prefix('v1')->group(function ()
         Route::get('appraisal/', 'AppraisalCtrl@index');
         Route::get('appraisal/{id}/', 'AppraisalCtrl@show');
         Route::put('appraisal/{id}/', 'AppraisalCtrl@update'); 
+
+        Route::post('logout', 'Auth\LoginController@logout');
+
     });
 
 });

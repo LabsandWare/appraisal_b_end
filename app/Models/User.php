@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+=======
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+>>>>>>> ea23d606db89f29448a14a4aea961bc257b8dad0
 
 class User extends Authenticatable
 {
@@ -29,11 +36,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+<<<<<<< HEAD
     // /**
     //  * The attributes that should be cast to native types.
     //  *
     //  * @var array
     //  */
+=======
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+>>>>>>> ea23d606db89f29448a14a4aea961bc257b8dad0
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
